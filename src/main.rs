@@ -8,6 +8,7 @@ use tokio_tungstenite::{accept_async, tungstenite::Message};
 #[tokio::main]
 async fn main() {
     let tcp_listener = TcpListener::bind("127.0.0.1:5001").await.unwrap();
+    println!("Listening on port 5001");
     while let Ok((stream, peer_address)) = tcp_listener.accept().await {
         tokio::spawn(async move {
             spawn_websocket(stream, peer_address).await;
